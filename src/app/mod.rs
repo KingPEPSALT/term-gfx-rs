@@ -1,5 +1,6 @@
 pub mod state;
-
+// TODO: move App into app.rs 
+// TODO: make benchmark_app.rs - BenchmarkApp implements Application
 use std::{
     cmp::Ordering,
     error::Error,
@@ -9,7 +10,7 @@ use std::{
 
 use crate::graphics::{
     BufferedCanvas, Camera, Canvas, Colour, DirectionalLight, LightColour, LightingContribution,
-    Material, PointLight, Sphere, Viewport, World, WorldVector,
+    Material, PointLight, Sphere, World, WorldVector,
 };
 use crossterm::{
     cursor,
@@ -19,9 +20,9 @@ use crossterm::{
     },
     ExecutableCommand,
 };
-use mouse_position::mouse_position::{Mouse, Position};
-use nalgebra::{ComplexField, Vector2, Vector3};
-use num_traits::{clamp, ToPrimitive, Zero};
+use mouse_position::mouse_position::Mouse;
+use nalgebra::{Vector2, Vector3};
+use num_traits::{clamp, Zero};
 use state::{Event, State};
 fn set_mouse_pos(x: i32, y: i32) {
     unsafe {
@@ -526,7 +527,6 @@ impl<'a> Application<'a> for App<'a> {
                         },
                     },
                 ],
-                origin: Vector3::zero(),
                 light_sources: vec![
                     Box::new(PointLight {
                         position: Vector3::zeros(),

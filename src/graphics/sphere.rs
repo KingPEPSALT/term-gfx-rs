@@ -1,4 +1,4 @@
-use super::{Colour, Material, Ray, WorldVector};
+use super::{Material, Ray, WorldVector};
 #[derive(Debug)]
 pub struct Sphere {
     pub center: WorldVector,

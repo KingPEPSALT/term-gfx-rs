@@ -1,12 +1,7 @@
-use std::default;
-
 use nalgebra::clamp;
 use num_traits::clamp_min;
 
-use super::{
-    light, sphere, Camera, Colour, LightColour, LightSource, Material, Ray, Sphere, Viewport,
-    WorldVector,
-};
+use super::{Camera, Colour, LightColour, LightSource, Material, Ray, Sphere, WorldVector};
 
 /// Defines a ray hit, what point it hit,
 /// the normal of the point and what material
@@ -43,7 +38,6 @@ impl LightingContribution {
 pub struct World {
     pub spheres: Vec<Sphere>,
     pub light_sources: Vec<Box<dyn LightSource>>,
-    pub origin: WorldVector,
     pub camera: Camera,
     pub ambient: LightColour,
 }
@@ -111,11 +105,14 @@ impl World {
             lighting.diffuse += light_source.diffuse(hit.point, hit.normal);
 
             // shadows
-            if self.closest_intersection(
-                &Ray::new(hit.point, light_source.light_direction(hit.point)),
-                0.001,
-                light_source.t_max(),
-            ).is_some() {
+            if self
+                .closest_intersection(
+                    &Ray::new(hit.point, light_source.light_direction(hit.point)),
+                    0.001,
+                    light_source.t_max(),
+                )
+                .is_some()
+            {
                 continue;
             }
             // apply specular if material has it

@@ -9,7 +9,6 @@ mod util;
 use nalgebra::{Vector2, Vector3};
 
 pub use canvas::*;
-pub use viewport::*;
 pub use sphere::*;
 pub use world::*;
 pub use light::*;

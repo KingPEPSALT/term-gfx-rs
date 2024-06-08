@@ -15,7 +15,7 @@ bitflags! {
     }
 }
 
-pub fn direction_axes<T: Neg<Output = T> + Scalar + Zero + One>() -> [Vector3<T>; 6] {
+pub fn _direction_axes<T: Neg<Output = T> + Scalar + Zero + One>() -> [Vector3<T>; 6] {
     [
         -Vector3::z(),
         -Vector3::x(),
@@ -26,11 +26,11 @@ pub fn direction_axes<T: Neg<Output = T> + Scalar + Zero + One>() -> [Vector3<T>
     ]
 }
 
-pub fn direction_vector<T: Neg<Output = T> + Scalar + Zero + One + AddAssign>(
+pub fn _direction_vector<T: Neg<Output = T> + Scalar + Zero + One + AddAssign>(
     direction: Direction,
 ) -> Vector3<T> {
     let mut i = 0_u8;
-    direction_axes::<T>()
+    _direction_axes::<T>()
         .iter()
         .cloned()
         .reduce(|acc, direction_vector| {

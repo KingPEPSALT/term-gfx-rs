@@ -9,7 +9,7 @@
 
 use std::io;
 
-use app::{state::State, App, Application, StdoutWriter};
+use app::{App, Application};
 mod app;
 mod graphics;
 
